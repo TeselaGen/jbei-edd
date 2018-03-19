@@ -2,8 +2,8 @@ FROM jbei/edd-node:latest as node
 
 # Copy in EDD code
 ARG EDD_VERSION=2.1.1
-ARG GIT_BRANCH=master
-ARG GIT_URL=https://github.com/JBEI/edd.git
+ARG GIT_BRANCH=teselagen
+ARG GIT_URL=https://00f4c582789c0326a9aa6308724139649ca41a41:x-oauth-basic@github.com/TeselaGen/jbei-edd.git
 ENV EDD_VERSION=${EDD_VERSION}
 RUN apk add --no-cache git \
     && git clone --depth 1 -b ${GIT_BRANCH} ${GIT_URL} code \
