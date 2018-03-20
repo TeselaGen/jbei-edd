@@ -335,12 +335,14 @@ div.mainFlex > div.footer {
 
 }
 div.footer-text {
-    border-top: 1px solid #CCC;
-    color: #CCC;
-    font-size: 0.85em;
-    margin: 20px 15px 0px 15px;
+    color: #fff;
+    background-color: #003f66;
     padding: 20px;
     text-align: center;
+    /* border-top: 1px solid #CCC;
+    font-size: 0.85em;
+    margin: 20px 15px 0px 15px; */
+    
 }
 div.footer-text > span {
     margin: 0 2em;
