@@ -227,9 +227,10 @@ div.mainFlex {
 /* Top banner styling */
 
 div.topBanner {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
+    height: 70px;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -240,7 +241,7 @@ div.topBanner {
 }
 div.topBanner > div.siteLogo {
     flex-shrink: 0;
-    padding: 10px 0 0 5px;
+    /* padding: 10px 0 0 5px; */
 }
 div.topBanner > div.pageName {
     color: #fff;
@@ -334,12 +335,14 @@ div.mainFlex > div.footer {
 
 }
 div.footer-text {
-    border-top: 1px solid #CCC;
-    color: #CCC;
-    font-size: 0.85em;
-    margin: 20px 15px 0px 15px;
+    color: #fff;
+    background-color: #003f66;
     padding: 20px;
     text-align: center;
+    /* border-top: 1px solid #CCC;
+    font-size: 0.85em;
+    margin: 20px 15px 0px 15px; */
+    
 }
 div.footer-text > span {
     margin: 0 2em;
@@ -457,7 +460,7 @@ div.lineFlex {
     flex-wrap: nowrap;
     flex-direction: row;
     margin: 10px 29px 32px 10px;
-    justify-content: space-between;"
+    justify-content: space-between;
 }
 
 div.overviewFlex {
@@ -495,7 +498,7 @@ div.assayActions {
     justify-content: flex-start; /* align items in Main Axis */
     align-items: stretch; /* align items in Cross Axis */
     align-content: stretch; /* Extra space in Cross Axis */
-    flex-wrap: nowrap;"
+    flex-wrap: nowrap;
 }
 
 div.pageSection.discloseHide.minor {
@@ -1880,6 +1883,7 @@ div.tooltip2 {
 .companyLogo {
     position: absolute;
     height: 60px;
+    padding: 10px;
 }
 
 .actionButton {
