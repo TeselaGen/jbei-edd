@@ -107,7 +107,7 @@ fi
 
 # Execute alternate launch modes
 if [ "$MODE" = "build" ]; then
-    docker-compose build
+    docker-compose build  --no-cache
 elif [ "$MODE" = "pull" ]; then
     docker-compose pull
 fi

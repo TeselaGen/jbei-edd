@@ -5,6 +5,7 @@ ARG EDD_VERSION=2.1.1
 ARG GIT_BRANCH=teselagen
 ARG GIT_URL=https://00f4c582789c0326a9aa6308724139649ca41a41:x-oauth-basic@github.com/TeselaGen/jbei-edd.git
 ENV EDD_VERSION=${EDD_VERSION}
+RUN echo "v2"
 RUN apk add --no-cache git \
     && git clone --depth 1 -b ${GIT_BRANCH} ${GIT_URL} code \
     && echo "Cache-bust: ${EDD_VERSION}" \
