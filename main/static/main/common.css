@@ -227,6 +227,9 @@ div.mainFlex {
 /* Top banner styling */
 
 div.topBanner {
+    position: absolute;
+    left: 0;
+    right: 0;
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
@@ -1870,7 +1873,13 @@ div.tooltip2 {
 }
 
 .eddLogo {
+    display: none;
     width:50px;
+}
+
+.companyLogo {
+    position: absolute;
+    height: 60px;
 }
 
 .actionButton {

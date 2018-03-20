@@ -1,25 +1,16 @@
-<!doctype html>
-{% load staticfiles %}
-{% load branding %}
-{% load i18n %}
+<!doctype html> {% load staticfiles %} {% load branding %} {% load i18n %}
 <html>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>
-        {% block head_title %}
-        {% trans 'Experiment Data Depot' context 'HTML Title' %}
-        {% endblock head_title %}
+        {% block head_title %} {% trans 'Experiment Data Depot' context 'HTML Title' %} {% endblock head_title %}
     </title>
     <script type="text/javascript" src="{% static 'dist/vendor.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'dist/styles.css' %}" />
     <script type="text/javascript" src="https://support.jbei.org/s/d3a33d14666229eeb44aa891f5cfdb9a-T/en_US2qlmkc/70120/555786f388e7417b872cf1ceee812d89/2.0.8/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?locale=en-US&amp;collectorId=0c7d3216"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'main/common.css' %}" />
-    {% stylesheet as branding_css %}
-    {% if branding_css %}
-    <link rel="stylesheet" type="text/css" href="{{ branding_css }}" />
-    {% endif %}
-    {% block js_css %}
-    {% if user.is_authenticated %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/common.css' %}" /> {% stylesheet as branding_css %} {% if branding_css %}
+    <link rel="stylesheet" type="text/css" href="{{ branding_css }}" /> {% endif %} {% block js_css %} {% if user.is_authenticated %}
     <script type="text/javascript">
         window.EDDData = window.EDDData || {};
         EDDData.currentUserID = {{ user.id }};
@@ -29,93 +20,83 @@
                 token = $('.statusMessage [name=csrfmiddlewaretoken]').first().val();
             ev.preventDefault();
             if (href) {
-                $.post(href, {'csrfmiddlewaretoken': token}, function () {
+                $.post(href, { 'csrfmiddlewaretoken': token }, function () {
                     link.parent().fadeOut();
                 });
             } else {
                 link.parent().fadeOut();
             }
         });
-    </script>
-    {% endif %}
-    {% endblock js_css%}
+    </script> {% endif %} {% endblock js_css%}
 </head>
+
 <body style="background-color:{% env_background_color %};">
-<div class="mainFlex">
-    <div id="content" class="content">
+    <div class="mainFlex">
         <div class="topBanner">
             <div class="siteLogo">
                 <a href="{% url 'main:index' %}">
-                    <img class="eddLogo" src="{% static 'main/images/edd_logo.png' %}"
-                            alt="{% trans 'EDD Logo' %}" />
-                    <img class="companyLogo" src="{% logo %}"
-                            alt="{% trans 'Branding Logo' %}" />
+                    <img class="eddLogo" src="{% static 'main/images/edd_logo.png' %}" alt="{% trans 'EDD Logo' %}" />
+                    <img class="companyLogo" src="{% logo %}" alt="{% trans 'Branding Logo' %}" />
                 </a>
             </div>
             <div class="pageName">
-                {% block body_title %}
-                {% trans 'Experiment Data Depot' context 'Top of page title' %}
-                {% endblock body_title %}
+                {% block body_title %} {% trans 'Experiment Data Depot' context 'Top of page title' %} {% endblock body_title %}
             </div>
             <div class="userMenu">
                 {% if user.is_authenticated %}
-                    <div>
-                        <div class="user_welcome">{{ user.first_name }} {{ user.last_name }}</div>
-                        <a href="{% url 'account_logout' %}">{% trans 'Logout' %}</a>
-                    </div>
+                <div>
+                    <div class="user_welcome">{{ user.first_name }} {{ user.last_name }}</div>
+                    <a href="{% url 'account_logout' %}">{% trans 'Logout' %}</a>
+                </div>
                 {% else %}
-                    <div>
-                        <a href="{% url 'account_login' %}">{% trans 'Login' %}</a>
-                    </div>
+                <div>
+                    <a href="{% url 'account_login' %}">{% trans 'Login' %}</a>
+                </div>
                 {% endif %}
             </div>
         </div>
-        <div class="statusMessage">
-        {% env_label %}
-        {% block status %}
-            {% if messages %}
-                {% csrf_token %}
-                {% for message in messages %}
-                <p {% if message.tags %}class="{{ message.tags }}"{% endif %}>
+        <div id="content" class="content">
+            <div class="statusMessage">
+                {% env_label %} {% block status %} {% if messages %} {% csrf_token %} {% for message in messages %}
+                <p {% if message.tags %}class="{{ message.tags }}" {% endif %}>
                     {% if message.pk %}
-                    <a class="close"
-                            data-dismiss="alert"
-                            close-href="{% url message_mark_read message.pk %}">×</a>
+                    <a class="close" data-dismiss="alert" close-href="{% url message_mark_read message.pk %}">×</a>
                     {% else %}
                     <a class="close" data-dismiss="alert">×</a>
-                    {% endif %}
-                    {{ message }}
+                    {% endif %} {{ message }}
                 </p>
-                {% endfor %}
-            {% endif %}
-        {% endblock status %}
+                {% endfor %} {% endif %} {% endblock status %}
+            </div>
+            {% block content %} {% endblock content %}
         </div>
-    {% block content %}
-    {% endblock content %}
+        <div id="bottomBar" class="bottomBar">
+        </div>
     </div>
-    <div id="bottomBar" class="bottomBar">
+    <div class="footer-text">
+        {% edd_version_number as version %}
+        <span class="footer-text-app">
+            {% blocktrans trimmed with version=version %} Experiment Data Depot {{ version }} {% endblocktrans %}
+        </span>
+        <span class="footer-text-contact">
+            <a href="mailto:jbei-help@lbl.gov?subject=EDD">{% trans 'Contact' %}</a>
+        </span>
+        {% if user.is_staff %}
+        <span>
+            <a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a>
+        </span>
+        {% endif %}
+        <span>
+            <a href="{% url 'edd_utils:index' %}">{% trans 'Utilities' %}</a>
+        </span>
+        <span>
+            <a href="{% url 'flatpage' url='tutorials' %}">{% trans 'Tutorials' %}</a>
+        </span>
+        <span>
+            <a href="http://pubs.acs.org/doi/abs/10.1021/acssynbio.7b00204">
+                {% trans 'EDD Publication' %}
+            </a>
+        </span>
     </div>
-</div>
-<div class="footer-text">
-    {% edd_version_number as version %}
-    <span class="footer-text-app">
-        {% blocktrans trimmed with version=version %}
-        Experiment Data Depot {{ version }}
-        {% endblocktrans %}
-    </span>
-    <span class="footer-text-contact">
-        <a href="mailto:jbei-help@lbl.gov?subject=EDD">{% trans 'Contact' %}</a>
-    </span>
-    {% if user.is_staff %}
-    <span><a href="{% url 'admin:index' %}">{% trans 'Administration' %}</a></span>
-    {% endif %}
-    <span><a href="{% url 'edd_utils:index' %}">{% trans 'Utilities' %}</a></span>
-    <span><a href="{% url 'flatpage' url='tutorials' %}">{% trans 'Tutorials' %}</a></span>
-    <span>
-        <a href="http://pubs.acs.org/doi/abs/10.1021/acssynbio.7b00204">
-            {% trans 'EDD Publication' %}
-        </a>
-    </span>
-</div>
 </body>
+
 </html>
