@@ -39,7 +39,7 @@
     <span>Step 1 : Choose what type of data to import (view Examples for how to format your data)</span>
     <div class="helpBadgeDiv">Help
       <div class="helpContent">
-        <p>In this step, EDD needs to know three things that dictate how it treats your file:</p>
+        <p>In this step, Test App needs to know three things that dictate how it treats your file:</p>
         <ol>
           <li>What format it's captured in: i.e. how the file is laid out.</li>
           <li>What information it contains: e.g. protein measurements, metabolite measurements,
@@ -48,9 +48,9 @@
         </ol>
         <p>In many cases, the file's format implies its content (e.g. Proteomics), but some more
           generic file formats will need additional clarification on the content. Also note that
-          EDD may not support all input file  formats for all measurement types. Please take a look
+          Test App may not support all input file  formats for all measurement types. Please take a look
           at the Examples to get a better sense of how to format your data.</p>
-        <p>EDD uses the "protocol" provided here to organize data captured using the same
+        <p>Test App uses the "protocol" provided here to organize data captured using the same
           experimental protocol. Though this entry may not affect what you see on the import
           page, it may dictate how information is grouped within your study.</p>
       </div>
@@ -69,8 +69,8 @@
           <a class="discloseLink" href="#">Examples</a>
           <div class="discloseBody" id="stdlayoutexample">
             <p>This import format accepts an Excel or other tabular formatted file, like a CSV.
-              The EDD will attempt to auto-detect some common layouts of rows and columns. Each
-              row and column in the file can be ignored. Then in Step 3, EDD can interpret
+              The Test App will attempt to auto-detect some common layouts of rows and columns. Each
+              row and column in the file can be ignored. Then in Step 3, Test App can interpret
               values each row as column labels, or values in the first column as row labels.</p>
             <p>The column labels are selected with "Entire Row Is..." options, set to read columns
               as for a "Line Name" or a "Measurement Name". Both of these options will use values
@@ -85,10 +85,10 @@
                 the measurement, in hours. If this option is <em>not</em> used, then a single
                 measurement time is set in Step 4.</li>
               <li>"Metadata Name" rows set Assay metadata for the imported data. The labels here
-                must be resolved to specific Metadata Types in EDD in Step 4.</li>
+                must be resolved to specific Metadata Types in Test App in Step 4.</li>
               <li>"Measurement Type" rows set the Measurement Type for the row of values. These
-                names should be either Metabolites or "General" measurement types in EDD, and
-                must be matched with types already existing in EDD.</li>
+                names should be either Metabolites or "General" measurement types in Test App, and
+                must be matched with types already existing in Test App.</li>
               <li>"Protein ID" rows are for loading Protein measurements. The values here should
                 be a UniProt accession ID (sp|P01234|NAME) <em>or</em> an ICE
                 part number (JBx_12345). The protein information is loaded from the external
@@ -99,7 +99,7 @@
             </ul>
             <p>Example 1:</p>
             <p>Here is a sequence of metabolites measured at different times. To import this, you
-              would paste it into the Step 2 box. The EDD automatically flips the axes and detects
+              would paste it into the Step 2 box. The Test App automatically flips the axes and detects
               the presence of a time sequence and measurement names.</p>
             {% static 'main/images/data_examples/excel_example-a.png' as example_a %}
             <img class="exampleImage" src="{{ example_a }}" />
@@ -108,7 +108,7 @@
             <img class="exampleImage" src="{{ example_a_1 }}" />
             <p>Example 2:</p>
             <p>Here is a sequence of measurements for multiple metabolites across different Lines.
-              The EDD will recognize the metabolites, but might not recognize the top row as Line
+              The Test App will recognize the metabolites, but might not recognize the top row as Line
               names</p>
             {% static 'main/images/data_examples/excel_example-b.png' as example_b %}
             <img class="exampleImage" src="{{ example_b }}" />
@@ -150,9 +150,9 @@
           <span><a class="discloseLink" href="#">Example</a></span>
           <div class="discloseBody" id="trlayoutexample">
             <p>In this typical example of gene transcription data, the only two columns that the
-              EDD actually cares about are the gene name, and the RPKM value, highlighted in
+              Test App actually cares about are the gene name, and the RPKM value, highlighted in
               green.</p>
-            <p>After you paste your document in, you'll need to tell the EDD where to find these
+            <p>After you paste your document in, you'll need to tell the Test App where to find these
               columns.</p>
             <img class="exampleImage"
                 src="{% static 'main/images/data_examples/transcription_example.png' %}" />
@@ -275,11 +275,11 @@
     <div class="helpBadgeDiv">Help
       <div class="helpContent">
         <p>Enter your data by dragging a file from the file system, by typing it in, or by
-          cutting-and-pasting from a text editor. EDD will do its best to make an educated guess
+          cutting-and-pasting from a text editor. Test App will do its best to make an educated guess
           about the file content based on your entries in Step 1, but you may need to help the
           system interpret your data.</p>
         <p>Especially useful options are the "transpose" and "ignore gaps" checkboxes at top
-          right. EDD will also try to guess whether or not to transpose by looking at your data.
+          right. Test App will also try to guess whether or not to transpose by looking at your data.
           You can edit it after it's pasted here, and the changes will propagate to later
           steps.</p>
       </div>
@@ -333,9 +333,9 @@
 
     <div class="helpBadgeDiv">Help
       <div class="helpContent">
-        <p>Configure the pulldown menus on the left of the table to tell EDD how to interpret each
+        <p>Configure the pulldown menus on the left of the table to tell Test App how to interpret each
           row and column of your data.</p>
-        <p>EDD will make an educated guess at how the pulldowns should be set, but you may need to
+        <p>Test App will make an educated guess at how the pulldowns should be set, but you may need to
           tweak them. In most cases, you can verify correctness by inspecting a plot of the data
           that will appear below. You can also go back and edit your data in Step 2 without losing
           your settings here.</p>
@@ -383,12 +383,12 @@
 
     <div class="helpBadgeDiv">Help
       <div class="helpContent">
-        <p>In this step, EDD needs to know how to relate the imported data to existing information
-          in your study and in EDD's database.</p>
-        <p>EDD will do its best to  pre-set these values for you based on data already present in
+        <p>In this step, Test App needs to know how to relate the imported data to existing information
+          in your study and in Test App's database.</p>
+        <p>Test App will do its best to  pre-set these values for you based on data already present in
           the system, but you should always verify its work.</p>
         <h4>Impact on Existing data in the Study</h4>
-        <p>Recall that if you tell EDD to use pre-existing Assays in this step, the impact on
+        <p>Recall that if you tell Test App to use pre-existing Assays in this step, the impact on
           existing data in your study will depend on whether you chose "merge" or "replace" in
           Step 1.</p>
         <h4>Import Scope</h4>
@@ -396,11 +396,11 @@
           of the import process are for the Protocol you've selected in Step 1.</p>
         <h4>Reducing the amount of work</h4>
         <p>This step is normally <em>much simpler and more automated</em> if you've used
-          information already known to EDD to label your input.</p>
+          information already known to Test App to label your input.</p>
         <p>Recall that the ideal, and often most efficient workflow, is to establish or use naming
-          conventions in EDD <em>prior to making your measurements</em>, then to use those names to
+          conventions in Test App <em>prior to making your measurements</em>, then to use those names to
           label your data (often by entering them into instrument controllers). If your input
-          already contains Line, Assay, Metabolite, Protein, etc. names known to EDD, it can
+          already contains Line, Assay, Metabolite, Protein, etc. names known to Test App, it can
           automatically interpret what you've measured with minimal input from you.</p>
       </div>
     </div>
@@ -610,11 +610,11 @@
     <span>Step 5 : Review your changes and submit.</span>
     <div class="helpBadgeDiv">Help
       <div class="helpContent">
-        <p>In this section you should review summary information to make sure EDD has understood
+        <p>In this section you should review summary information to make sure Test App has understood
           your data, and to double-check the results of your entries to help catch mistakes.</p>
         <p>You'll need to knowledge warnings regarding the content of your import, or else
           resolve them by changing entries in previous steps.</p>
-        <p>EDD isn't familiar with your experiment, so please double-check the system and
+        <p>Test App isn't familiar with your experiment, so please double-check the system and
           yourself!</p>
       </div>
     </div>

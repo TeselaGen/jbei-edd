@@ -7,17 +7,17 @@ li { margin-left: 40px; }
 {% endblock %}
 
 {% block head_title %}
-EDD utilities
+Test App utilities
 {% endblock head_title %}
 
 {% block body_title %}
-EDD utilities
+Test App utilities
 {% endblock body_title %}
 
 {% block content %}
 
 <p>These tools provide additional data-processing functionality for handling
-non-standard formats that will eventually be imported into EDD.</p>
+non-standard formats that will eventually be imported into Test App.</p>
 <ul>
     <li>
         <a href="{% url 'edd_utils:gc_ms_home' %}">GC-MS report extraction</a>: this tool
@@ -37,7 +37,7 @@ non-standard formats that will eventually be imported into EDD.</p>
     {% endif %}
     <li>
         <a href="{% url 'edd_utils:ec_import' %}">Enzyme Characterization Import</a>: Collect
-        plate reader data from the SpectraMax M2 and feed it into the EDD.
+        plate reader data from the SpectraMax M2 and feed it into the Test App.
     </li>
 </ul>
 
