@@ -99,7 +99,7 @@ class Migration(migrations.Migration):
                 ('active', models.BooleanField(default=True, help_text='Flag indicating this Measurement is active and should be displayed.', verbose_name='Active')),
                 ('compartment', models.CharField(choices=[('0', 'N/A'), ('1', 'Intracellular/Cytosol (Cy)'), ('2', 'Extracellular')], default='0', help_text='Compartment of the cell for this Measurement.', max_length=1, verbose_name='Compartment')),
                 ('measurement_format', models.CharField(choices=[('0', 'scalar'), ('1', 'vector'), ('2', 'histogram'), ('3', 'sigma')], default='0', help_text='Enumeration of value formats for this Measurement.', max_length=2, verbose_name='Format')),
-                ('experimenter', models.ForeignKey(blank=True, help_text='EDD User that set up the experimental conditions of this Measurement.', null=True, on_delete=PROTECT, related_name='measurement_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
+                ('experimenter', models.ForeignKey(blank=True, help_text='Test App User that set up the experimental conditions of this Measurement.', null=True, on_delete=PROTECT, related_name='measurement_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
             ],
             options={
                 'db_table': 'measurement',
@@ -188,7 +188,7 @@ class Migration(migrations.Migration):
                 ('default_value', models.CharField(blank=True, help_text='Default value for this Metadata Type.', max_length=255, verbose_name='Default Value')),
                 ('prefix', models.CharField(blank=True, help_text='Prefix text appearing before values of this Metadata Type.', max_length=255, verbose_name='Prefix')),
                 ('postfix', models.CharField(blank=True, help_text='Postfix text appearing after values of this Metadata Type.', max_length=255, verbose_name='Postfix')),
-                ('for_context', models.CharField(choices=[(b'S', 'Study'), (b'L', 'Line'), (b'A', 'Assay')], help_text='Type of EDD Object this Metadata Type may be added to.', max_length=8, verbose_name='Context')),
+                ('for_context', models.CharField(choices=[(b'S', 'Study'), (b'L', 'Line'), (b'A', 'Assay')], help_text='Type of Test App Object this Metadata Type may be added to.', max_length=8, verbose_name='Context')),
                 ('type_class', models.CharField(blank=True, help_text='Type of data saved for this Metadata Type; blank saves a string type.', max_length=255, null=True, verbose_name='Type Class')),
                 ('uuid', models.UUIDField(editable=False, help_text='Unique identifier for this Metadata Type.', unique=True, verbose_name='UUID')),
                 ('group', models.ForeignKey(blank=True, help_text='Group for this Metadata Type', null=True, on_delete=PROTECT, to='main.MetadataGroup', verbose_name='Group')),
@@ -241,7 +241,7 @@ class Migration(migrations.Migration):
             name='Assay',
             fields=[
                 ('object_ref', models.OneToOneField(on_delete=CASCADE, parent_link=True, primary_key=True, serialize=False, to='main.EDDObject')),
-                ('experimenter', models.ForeignKey(blank=True, help_text='EDD User that set up the experimental conditions of this Assay.', null=True, on_delete=PROTECT, related_name='assay_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
+                ('experimenter', models.ForeignKey(blank=True, help_text='Test App User that set up the experimental conditions of this Assay.', null=True, on_delete=PROTECT, related_name='assay_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
             ],
             options={
                 'db_table': 'assay',
@@ -280,10 +280,10 @@ class Migration(migrations.Migration):
             fields=[
                 ('control', models.BooleanField(default=False, help_text='Flag indicating whether the sample for this Line is a control.', verbose_name='Control')),
                 ('object_ref', models.OneToOneField(on_delete=CASCADE, parent_link=True, primary_key=True, related_name='+', serialize=False, to='main.EDDObject')),
-                ('contact_extra', models.TextField(help_text='Additional field for contact information about this Line (e.g. contact is not a User of EDD).', verbose_name='Contact (extra)')),
+                ('contact_extra', models.TextField(help_text='Additional field for contact information about this Line (e.g. contact is not a User of Test App).', verbose_name='Contact (extra)')),
                 ('carbon_source', models.ManyToManyField(blank=True, db_table='line_carbon_source', help_text='Carbon source(s) used in this Line.', to='main.CarbonSource', verbose_name='Carbon Source(s)')),
                 ('contact', models.ForeignKey(blank=True, help_text='TeselaGen User to contact about this Line.', null=True, on_delete=PROTECT, related_name='line_contact_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
-                ('experimenter', models.ForeignKey(blank=True, help_text='EDD User that set up the experimental conditions of this Line.', null=True, on_delete=PROTECT, related_name='line_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
+                ('experimenter', models.ForeignKey(blank=True, help_text='Test App User that set up the experimental conditions of this Line.', null=True, on_delete=PROTECT, related_name='line_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
             ],
             options={
                 'db_table': 'line',
@@ -373,7 +373,7 @@ class Migration(migrations.Migration):
             name='Study',
             fields=[
                 ('object_ref', models.OneToOneField(on_delete=CASCADE, parent_link=True, primary_key=True, related_name='+', serialize=False, to='main.EDDObject')),
-                ('contact_extra', models.TextField(help_text='Additional field for contact information about this study (e.g. contact is not a User of EDD).', verbose_name='Contact (extra)')),
+                ('contact_extra', models.TextField(help_text='Additional field for contact information about this study (e.g. contact is not a User of Test App).', verbose_name='Contact (extra)')),
                 ('slug', models.SlugField(help_text='Slug text used in links to this Study.', null=True, unique=True, verbose_name='Slug')),
                 ('contact', models.ForeignKey(blank=True, help_text='TeselaGen User to contact about this study.', null=True, on_delete=PROTECT, related_name='contact_study_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
                 ('metabolic_map', models.ForeignKey(blank=True, help_text='Metabolic map used by default in this Study.', null=True, on_delete=SET_NULL, to='main.SBMLTemplate', verbose_name='Metabolic Map')),

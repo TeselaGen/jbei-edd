@@ -323,7 +323,7 @@ class Study(EDDObject):
     )
     contact_extra = models.TextField(
         help_text=_('Additional field for contact information about this study (e.g. contact is '
-                    'not a User of EDD).'),
+                    'not a User of Test App).'),
         verbose_name=_('Contact (extra)'),
     )
     metabolic_map = models.ForeignKey(
@@ -765,13 +765,13 @@ class Line(EDDObject):
     )
     contact_extra = models.TextField(
         help_text=_('Additional field for contact information about this Line (e.g. contact is '
-                    'not a User of EDD).'),
+                    'not a User of Test App).'),
         verbose_name=_('Contact (extra)'),
     )
     experimenter = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True,
-        help_text=_('EDD User that set up the experimental conditions of this Line.'),
+        help_text=_('Test App User that set up the experimental conditions of this Line.'),
         null=True,
         on_delete=models.PROTECT,
         related_name='line_experimenter_set',
@@ -895,7 +895,7 @@ class Assay(EDDObject):
     experimenter = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True,
-        help_text=_('EDD User that set up the experimental conditions of this Assay.'),
+        help_text=_('Test App User that set up the experimental conditions of this Assay.'),
         null=True,
         on_delete=models.PROTECT,
         related_name='assay_experimenter_set',
@@ -981,7 +981,7 @@ class Measurement(EDDMetadata, EDDSerialize):
     experimenter = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True,
-        help_text=_('EDD User that set up the experimental conditions of this Measurement.'),
+        help_text=_('Test App User that set up the experimental conditions of this Measurement.'),
         null=True,
         on_delete=models.PROTECT,
         related_name='measurement_experimenter_set',
