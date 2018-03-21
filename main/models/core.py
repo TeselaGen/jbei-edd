@@ -315,7 +315,7 @@ class Study(EDDObject):
     contact = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True,
-        help_text=_('EDD User to contact about this study.'),
+        help_text=_('TeselaGen User to contact about this study.'),
         null=True,
         on_delete=models.PROTECT,
         related_name='contact_study_set',
@@ -757,7 +757,7 @@ class Line(EDDObject):
     contact = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         blank=True,
-        help_text=_('EDD User to contact about this Line.'),
+        help_text=_('TeselaGen User to contact about this Line.'),
         null=True,
         on_delete=models.PROTECT,
         related_name='line_contact_set',

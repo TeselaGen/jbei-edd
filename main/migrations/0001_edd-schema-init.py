@@ -282,7 +282,7 @@ class Migration(migrations.Migration):
                 ('object_ref', models.OneToOneField(on_delete=CASCADE, parent_link=True, primary_key=True, related_name='+', serialize=False, to='main.EDDObject')),
                 ('contact_extra', models.TextField(help_text='Additional field for contact information about this Line (e.g. contact is not a User of EDD).', verbose_name='Contact (extra)')),
                 ('carbon_source', models.ManyToManyField(blank=True, db_table='line_carbon_source', help_text='Carbon source(s) used in this Line.', to='main.CarbonSource', verbose_name='Carbon Source(s)')),
-                ('contact', models.ForeignKey(blank=True, help_text='EDD User to contact about this Line.', null=True, on_delete=PROTECT, related_name='line_contact_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
+                ('contact', models.ForeignKey(blank=True, help_text='TeselaGen User to contact about this Line.', null=True, on_delete=PROTECT, related_name='line_contact_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
                 ('experimenter', models.ForeignKey(blank=True, help_text='EDD User that set up the experimental conditions of this Line.', null=True, on_delete=PROTECT, related_name='line_experimenter_set', to=settings.AUTH_USER_MODEL, verbose_name='Experimenter')),
             ],
             options={
@@ -375,7 +375,7 @@ class Migration(migrations.Migration):
                 ('object_ref', models.OneToOneField(on_delete=CASCADE, parent_link=True, primary_key=True, related_name='+', serialize=False, to='main.EDDObject')),
                 ('contact_extra', models.TextField(help_text='Additional field for contact information about this study (e.g. contact is not a User of EDD).', verbose_name='Contact (extra)')),
                 ('slug', models.SlugField(help_text='Slug text used in links to this Study.', null=True, unique=True, verbose_name='Slug')),
-                ('contact', models.ForeignKey(blank=True, help_text='EDD User to contact about this study.', null=True, on_delete=PROTECT, related_name='contact_study_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
+                ('contact', models.ForeignKey(blank=True, help_text='TeselaGen User to contact about this study.', null=True, on_delete=PROTECT, related_name='contact_study_set', to=settings.AUTH_USER_MODEL, verbose_name='Contact')),
                 ('metabolic_map', models.ForeignKey(blank=True, help_text='Metabolic map used by default in this Study.', null=True, on_delete=SET_NULL, to='main.SBMLTemplate', verbose_name='Metabolic Map')),
                 ('protocols', models.ManyToManyField(blank=True, db_table='study_protocol', help_text='Protocols planned for use in this Study.', to='main.Protocol', verbose_name='Protocols')),
             ],
