@@ -10,10 +10,8 @@ volumes:
   redisdata: {}
 services:
   postgres:
-    image: data_postgres
+    image: library/postgres:9.6
     restart: always
-    ports: 
-      - 5555:5432
     networks:
       - backnet
     volumes:
