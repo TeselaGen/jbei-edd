@@ -65,6 +65,11 @@ label {
     font-weight: normal !important;
 }
 
+input:disabled+label{color:#ccc;}
+
+.disabled-label {
+    color:#ccc
+}
 
 /* Functional classes */
 
@@ -429,14 +434,13 @@ div.pageSection div.sectionChapter {
 }
 div.pageSection div.sectionContent {
     margin:0px;
-    padding:4px 8px 4px 8px;
+    padding:4px 8px 4px 25px;
 }
 div.pageSection div.sectionContent.sectionRight {
     text-align: right;
 }
 div.pageSection div.sectionContent div.subSectionChapter {
     margin:2px 0px 0px 4px;
-    padding:0px 1px 0px 1px;
     border-style:solid;
     border-width:0px;
 }
@@ -515,10 +519,6 @@ div.pageSection.minor div.sectionHead {
 ul.studyTabs {
     margin: 15px 0px 10px 0px;
      border-bottom: 1px solid lightgray;
-}
-
-div.noLines {
-    display: none;
 }
 
 span.allowError {
@@ -624,7 +624,6 @@ tr.columnLabels > th.sortwait > div:hover {
 table.dataTable tr > td {
     padding:4px 4px 4px 8px;
     margin:0px;
-    font-size:12px;
     font-family: Helvetica, sans-serif;
     vertical-align:top;
 }
@@ -1079,6 +1078,7 @@ table.formTable {
     margin:10px 3px 20px 3px;
     border:none;
     font-size:16px;
+    width: 90%;
 }
 table.formTable tr > td {
     text-align:left;
@@ -1578,9 +1578,6 @@ form.comments textarea {
     float: left;
     padding-right: 1em;
 }
-.exportDisplay {
-    position: absolute;
-}
 .exportDisplay textarea {
     width: 100%;
 }
@@ -1597,13 +1594,15 @@ form.comments textarea {
 /* File drop-zone styling */
 
 .fd-zone {
-    background-repeat: no-repeat;
     background-attachment: scroll;
-    background-position: center;
+    background-color: inherit;
     background-image: url(images/dropzone-excel_csv.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    font-size:17px;
     min-height:220px;
     padding:5px;
-    font-size:17px;
 }
 
 .fd-zone.over {
@@ -1635,7 +1634,7 @@ form.comments textarea {
 }
 
 div.fileDropInfoArea {
-    margin:24px 8px 24px 8px;
+    margin:30px 8px 24px 8px;
 }
 
 div.fileDropInfoIcon {
@@ -2066,6 +2065,16 @@ div.tooltip2 {
     height: 300px;
     width: 100%;
     padding:auto;
+}
+
+/** Remove distracting styling from the sample file download links*/
+.sampleFileDownloadLink {
+    text-decoration: none;
+    font-size: 75%;
+}
+
+.sampleFileDownloadLink, .sampleFileDownloadLink a:link, .sampleFileDownloadLink :visited .sampleFileDownloadLink {
+    color: gray;
 }
 
 /* End of common styles */
